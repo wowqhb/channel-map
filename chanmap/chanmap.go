@@ -58,7 +58,7 @@ func (this *ChanMap) getChan(key string) (chan string, error) {
 func (this *ChanMap) FindOrCreateChan(key string) (chan string, error) {
 	_chan, _err := this.getChan(key)
 	if _err != nil {
-		_chan = make(chan string, 1024)
+		_chan = make(chan string, 516)
 		this._map[key] = _chan
 		go this._processor(key, _chan)
 		_err = nil

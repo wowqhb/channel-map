@@ -19,12 +19,11 @@ func main() {
 		os.Exit(0)
 	}
 
-	for i := 0; i < 10240; i++ {
+	for i := 0; i < 102400000; i++ {
 		_chan <- strconv.Itoa(i)
 	}
 
 	time.Sleep(10 * time.Second)
 	_chan <- "killself"
-
-	time.Sleep(10 * time.Second)
+	<-make(chan bool)
 }
