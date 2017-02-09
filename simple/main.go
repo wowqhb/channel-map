@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	cm := chanmap.NewChanMap(func(_tmp string) {
+	cm := chanmap.NewChanMap(func(_tmp interface{}) {
 		fmt.Println(_tmp)
 	})
 
@@ -19,11 +19,11 @@ func main() {
 		os.Exit(0)
 	}
 
-	for i := 0; i < 102400000; i++ {
+	for i := 0; i < 1024; i++ {
 		_chan <- strconv.Itoa(i)
 	}
 
 	time.Sleep(10 * time.Second)
-	_chan <- "killself"
+	_chan <- chanmap.NewKillSelf()
 	<-make(chan bool)
 }
